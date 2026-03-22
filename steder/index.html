@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steder i Thy — Fra klit til bugt — udforsk byer og skjulte perler i Nordvestjylland. | explorethy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --gold: #b5873a; --teal: #1c3a45; --bg: #f2f1f0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', sans-serif; background: #f2f1f0; color: #1c3a45; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── Nav ─── */
+    .nav-link {
+      color: rgba(255,255,255,0.82); font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.25rem 0; border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s; text-decoration: none;
+    }
+    .nav-link:hover { color: #fff; border-bottom-color: #b5873a; }
+    .nav-link:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 2px; }
+
+    /* ─── Buttons ─── */
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #b5873a; color: #fff; font-family: 'Lato', sans-serif;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+      padding: 0.75rem 1.75rem; border-radius: 9999px;
+      box-shadow: 0 4px 18px rgba(181,135,58,0.35);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer; border: none; text-decoration: none;
+    }
+    .btn-gold:hover { background: #a07530; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,135,58,0.45); }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    /* ─── Tags ─── */
+    .sub-tag {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: rgba(181,135,58,0.12); color: #b5873a;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 9999px; border: 1px solid rgba(181,135,58,0.3);
+    }
+
+    /* ─── Hero ─── */
+    .page-hero {
+      background: linear-gradient(145deg, #1c3a45 0%, #0f2028 55%, #1a2f28 100%);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.05;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+      background: linear-gradient(to top, #f2f1f0, transparent);
+    }
+    .gold-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(181,135,58,0.14); pointer-events: none;
+    }
+
+    /* ─── Breadcrumb ─── */
+    .breadcrumb a {
+      color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: #b5873a; }
+    .breadcrumb span { color: rgba(255,255,255,0.25); font-size: 0.78rem; margin: 0 0.4rem; }
+
+    /* ─── Section headings ─── */
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; color: #1c3a45;
+    }
+    .gold-divider { width: 3rem; height: 3px; background: #b5873a; border-radius: 9999px; }
+
+    /* ─── Arrow CTA ─── */
+    .arrow-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: #b5873a; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .arrow-cta:hover { gap: 0.7rem; }
+    .arrow-cta:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 2px; }
+
+    /* ─── Featured card ─── */
+    .featured-card {
+      position: relative; overflow: hidden; border-radius: 1.25rem;
+      background: #fff; box-shadow: 0 4px 40px rgba(28,58,69,0.16);
+      text-decoration: none; display: block;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .featured-card:hover { transform: translateY(-4px); box-shadow: 0 14px 48px rgba(28,58,69,0.24); }
+    .featured-card:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    /* ─── Experience cards ─── */
+    .exp-card {
+      position: relative; overflow: hidden; border-radius: 1rem;
+      background: #fff; box-shadow: 0 2px 18px rgba(28,58,69,0.1);
+      text-decoration: none; display: block;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .exp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(28,58,69,0.2); }
+    .exp-card:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+    .exp-card img { width: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .exp-card:hover img { transform: scale(1.04); }
+
+    .img-wrap { overflow: hidden; position: relative; }
+    .img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,58,69,0.5) 0%, transparent 55%);
+    }
+
+    /* ─── Img badge ─── */
+    .img-badge {
+      position: absolute; top: 1rem; left: 1rem; z-index: 1;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: rgba(28,58,69,0.85); color: #b5873a;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 9999px;
+      border: 1px solid rgba(181,135,58,0.4); backdrop-filter: blur(6px);
+    }
+
+    /* ─── Noise ─── */
+    .noise-bg { position: relative; }
+    .noise-bg::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.04;
+    }
+
+    /* ─── Mobile ─── */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+    .hamburger { cursor: pointer; padding: 0.5rem; background: none; border: none; }
+    .hamburger:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 4px; }
+
+    @media (max-width: 768px) {
+      .md-only { display: none !important; }
+      .feat-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (min-width: 769px) {
+      .mob-only { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav style="background:#1c3a45; position:sticky; top:0; z-index:50; box-shadow:0 2px 16px rgba(0,0,0,0.2);">
+    <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; height:64px;">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.6rem; text-decoration:none;" aria-label="explorethy hjem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" width="32" height="30" aria-hidden="true">
+            <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+          </svg>
+          <span style="color:#fff; font-weight:900; font-size:1.05rem; letter-spacing:-0.01em;">explore<span style="color:#b5873a;">thy</span></span>
+        </a>
+
+        <div class="md-only" style="display:flex; align-items:center; gap:2rem;">
+          <a href="../index.html" class="nav-link">Natur</a>
+          <a href="../index.html" class="nav-link">Aktivitet</a>
+          <a href="index.html" class="nav-link">Steder</a>
+          <a href="index.html" class="nav-link" style="color:#b5873a; border-bottom-color:#b5873a;">Steder</a>
+          <a href="../index.html#kontakt" class="btn-gold" style="padding:0.5rem 1.25rem; font-size:0.8rem;">Planlæg besøg</a>
+        </div>
+
+        <button class="hamburger mob-only" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" style="padding-bottom:1rem;">
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <a href="index.html" class="nav-link" style="color:#b5873a;">Steder</a>
+          <a href="../index.html" class="nav-link">Hjem</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="page-hero" style="padding:5.5rem 1.5rem 8rem;">
+    <div class="gold-ring" style="width:560px; height:560px; top:-220px; right:-160px;"></div>
+    <div class="gold-ring" style="width:320px; height:320px; bottom:-120px; left:-120px; opacity:0.07;"></div>
+    <div class="gold-ring" style="width:180px; height:180px; top:30%; left:55%; opacity:0.06;"></div>
+
+    <div style="max-width:780px; margin:0 auto; text-align:center; position:relative; z-index:1;">
+      <nav class="breadcrumb" style="margin-bottom:1.75rem; display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap;" aria-label="Brødkrumme">
+        <a href="../index.html">Hjem</a>
+        <span>›</span>
+        <span style="color:rgba(255,255,255,0.65); font-size:0.78rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;">Steder</span>
+      </nav>
+
+      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:rgba(181,135,58,0.15); color:#b5873a; font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:9999px; border:1px solid rgba(181,135,58,0.3); margin-bottom:1.5rem;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.26c0 0 2.77-7.73 11.18-9.64C9.93 10.56 5.11 14.15 3 19c0 0 5.79-11.05 14.18-9.26A14.28 14.28 0 0 1 20 22c0-6.94-4.4-11-11-14z"/></svg>
+        Kategori · explorethy
+      </div>
+
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,7vw,5.5rem); font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:0.95; margin-bottom:1.25rem;">
+        Steder<br><span style="color:#b5873a;">i Thy</span>
+      </h1>
+      <p style="color:rgba(255,255,255,0.68); font-size:1.08rem; line-height:1.8; max-width:580px; margin:0 auto;">
+        Fra klit til bugt — udforsk byer og skjulte perler i Nordvestjylland.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── EDITORIAL INTRO ─── -->
+  <section style="max-width:1200px; margin:0 auto; padding:4rem 1.5rem 0;">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:3rem; align-items:start;" class="feat-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.6rem;">
+          <div class="gold-divider"></div>
+          <span style="font-size:0.72rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase;">Om kategorien</span>
+        </div>
+        <h2 class="section-heading" style="margin-bottom:0;">Hvad er<br>Steder i Thy?</h2>
+      </div>
+      <div>
+        <p style="font-size:1.05rem; line-height:1.9; color:#3d5560; margin-bottom:1.25rem;">
+          I Thy går tid langsommere. Nationalparken strækker sig langs kysten, Vesterhavet bryder mod stranden, og her ude — langt fra støjen — finder mange en ro, de længe har søgt.
+        </p>
+        <p style="font-size:1.05rem; line-height:1.9; color:#3d5560;">
+          Velvære i Thy handler ikke om luksus i traditionel forstand. Det handler om at lade naturen gøre arbejdet: et koldt bad i bølgerne, en langsom vandretur langs klitryggen, en guidet rundvisning i et destilleri der lader dig smage stedet, eller bare det at sidde stille og se stjernerne over Bulbjerg.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MAIN CONTENT ─── -->
+  <main style="max-width:1200px; margin:0 auto; padding:4rem 1.5rem 6rem;">
+
+    <!-- Featured: Thy Whisky -->
+    <div style="margin-bottom:4.5rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.6rem;">
+        <div class="gold-divider"></div>
+        <span style="font-size:0.72rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase;">Fremhævet oplevelse</span>
+      </div>
+      <h2 class="section-heading" style="margin-bottom:2rem;">Sæson for sanserne</h2>
+
+      <a href="thy-whisky.html" class="featured-card" aria-label="Læs om: Thy Whisky — Smagning & Rundvisning">
+        <div class="feat-grid" style="display:grid; grid-template-columns:1fr 1fr; min-height:460px;">
+          <!-- Image -->
+          <div style="position:relative; overflow:hidden; min-height:460px;">
+            <img
+              src="https://whiskymag.com/media/oydmgtwr/thy-whisky-family-at-warehouse-official.webp"
+              alt="Fadlageret på Gyrup Gods"
+              style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s;"
+              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"
+            >
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(15,32,40,0.5) 0%, transparent 50%);"></div>
+            <div style="position:absolute; inset:0; background:rgba(28,58,69,0.1); mix-blend-mode:multiply;"></div>
+            <div class="img-badge" style="position:absolute; top:1.25rem; left:1.25rem;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              Smagning & Destilleri
+            </div>
+          </div>
+          <!-- Text -->
+          <div style="padding:3rem; display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:0.6rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+              <span class="sub-tag">Smagning</span>
+              <span class="sub-tag">Rundvisning</span>
+              <span style="display:inline-flex; align-items:center; gap:0.3rem; background:#f0f9f0; color:#2d7a3d; font-size:0.7rem; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.8rem; border-radius:9999px; border:1px solid rgba(45,122,61,0.3);">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.26c0 0 2.77-7.73 11.18-9.64C9.93 10.56 5.11 14.15 3 19c0 0 5.79-11.05 14.18-9.26A14.28 14.28 0 0 1 20 22c0-6.94-4.4-11-11-14z"/></svg>
+                Økologisk
+              </span>
+            </div>
+
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.75rem,3vw,2.6rem); font-weight:700; letter-spacing:-0.01em; line-height:1.1; color:#1c3a45; margin-bottom:1rem;">
+              Smag historien<br>om Thy
+            </h3>
+            <p style="line-height:1.8; color:#3d5560; font-size:0.98rem; margin-bottom:1.75rem;">
+              I fadlageret på Gyrup Gods hviler Thys mest anerkendte produkt i mørket, år for år. En guidet rundvisning lader dig følge whiskyen fra kornmark til kobberkedel til glas — og smage resultatet.
+            </p>
+
+            <div style="display:flex; gap:2rem; margin-bottom:2rem; flex-wrap:wrap;">
+              <div>
+                <div style="font-size:1.45rem; font-weight:900; color:#b5873a; letter-spacing:-0.02em;">75 kr</div>
+                <div style="font-size:0.7rem; font-weight:700; color:#3d5560; letter-spacing:0.05em; text-transform:uppercase; margin-top:0.2rem;">Drop-in smagning</div>
+              </div>
+              <div>
+                <div style="font-size:1.45rem; font-weight:900; color:#b5873a; letter-spacing:-0.02em;">2 timer</div>
+                <div style="font-size:0.7rem; font-weight:700; color:#3d5560; letter-spacing:0.05em; text-transform:uppercase; margin-top:0.2rem;">Guidet rundvisning</div>
+              </div>
+              <div>
+                <div style="font-size:1.45rem; font-weight:900; color:#b5873a; letter-spacing:-0.02em;">#1</div>
+                <div style="font-size:0.7rem; font-weight:700; color:#3d5560; letter-spacing:0.05em; text-transform:uppercase; margin-top:0.2rem;">EU Whisky 2020</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem;">
+              <span class="arrow-cta">
+                Læs om oplevelsen
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+              <span style="display:flex; align-items:center; gap:0.35rem; font-size:0.75rem; color:rgba(28,58,69,0.45);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Snedsted, Thy
+              </span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Grid: øvrige oplevelser -->
+    <div>
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.6rem;">
+        <div class="gold-divider"></div>
+        <span style="font-size:0.72rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase;">Alle oplevelser</span>
+      </div>
+      <h2 class="section-heading" style="margin-bottom:2rem;">Steder i alle former</h2>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:1.75rem;">
+
+        <!-- Card 1: Koldbad -->
+        <div class="exp-card" tabindex="0" role="article" aria-label="Koldbad ved Vesterhavet">
+          <div class="img-wrap">
+            <div class="img-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-5.52 4.48-10 10-10s10 4.48 10 10M2 12c0 5.52 4.48 10 10 10s10-4.48 10-10"/><path d="M12 2v4m0 12v4"/></svg>
+              Havoplevelse
+            </div>
+            <img src="https://placehold.co/600x360/1c3a45/b5873a?text=Vesterhavet+·+Koldbad" alt="Koldbad ved Vesterhavet" style="height:240px;">
+          </div>
+          <div style="padding:1.5rem;">
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem; flex-wrap:wrap;">
+              <span class="sub-tag">Natur</span>
+              <span class="sub-tag">Steder</span>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.35rem; letter-spacing:-0.01em; color:#1c3a45; margin-bottom:0.5rem;">Koldbad ved Vesterhavet</h3>
+            <p style="color:#3d5560; font-size:0.9rem; line-height:1.7; margin-bottom:1.25rem;">Havet slår mod klitterne, lugter af salt og tang — og vandet er sjældent over 12 grader. Koldbad i Vesterhavet er Thys enkle og effektfulde friluftskur.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+              <span style="display:flex; align-items:center; gap:0.35rem; color:#b5873a; font-weight:700; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.5;">
+                Kommer snart
+              </span>
+              <span style="display:flex; align-items:center; gap:0.3rem; font-size:0.72rem; color:rgba(28,58,69,0.4);">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Klitmøller / Vorupør
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Vandretur -->
+        <div class="exp-card" tabindex="0" role="article" aria-label="Vandreture i Nationalpark Thy">
+          <div class="img-wrap">
+            <div class="img-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              Natur & Vandring
+            </div>
+            <img src="https://placehold.co/600x360/152a20/a8c890?text=Nationalpark+Thy" alt="Klithede i Nationalpark Thy" style="height:240px;">
+          </div>
+          <div style="padding:1.5rem;">
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem; flex-wrap:wrap;">
+              <span class="sub-tag">Natur</span>
+              <span class="sub-tag">Aktivitet</span>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.35rem; letter-spacing:-0.01em; color:#1c3a45; margin-bottom:0.5rem;">Vandretur i Nationalpark Thy</h3>
+            <p style="color:#3d5560; font-size:0.9rem; line-height:1.7; margin-bottom:1.25rem;">244 km² uberørt klithede, rørskov og havstrand. Her er ingen trængsel — kun vinden i lyngen, sporene i sandet og dit eget tempo.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+              <span style="display:flex; align-items:center; gap:0.35rem; color:#b5873a; font-weight:700; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.5;">Kommer snart</span>
+              <span style="display:flex; align-items:center; gap:0.3rem; font-size:0.72rem; color:rgba(28,58,69,0.4);">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Hele Nationalpark Thy
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Spa & Klithotel -->
+        <div class="exp-card" tabindex="0" role="article" aria-label="Spa og afslapning på klithotel">
+          <div class="img-wrap">
+            <div class="img-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 1 5 5c0 4-5 11-5 11S7 11 7 7a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="2"/></svg>
+              Overnatning & Spa
+            </div>
+            <img src="https://placehold.co/600x360/0f2028/c8a84b?text=Klithotel+·+Spa" alt="Klithotel ved Vesterhavet" style="height:240px;">
+          </div>
+          <div style="padding:1.5rem;">
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+              <span class="sub-tag">Overnatning</span>
+              <span class="sub-tag">Steder</span>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.35rem; letter-spacing:-0.01em; color:#1c3a45; margin-bottom:0.5rem;">Spa & afslapning ved klitterne</h3>
+            <p style="color:#3d5560; font-size:0.9rem; line-height:1.7; margin-bottom:1.25rem;">Moderne klithoteller med udsigt over Vesterhavet — havblik, sauna, stilhed og morgenkaffe mens solen stiger over sandklitterne.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+              <span style="display:flex; align-items:center; gap:0.35rem; color:#b5873a; font-weight:700; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.5;">Kommer snart</span>
+              <span style="display:flex; align-items:center; gap:0.3rem; font-size:0.72rem; color:rgba(28,58,69,0.4);">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Klitmøller / Hanstholm
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Sankning -->
+        <div class="exp-card" tabindex="0" role="article" aria-label="Sankning og naturmad i Thy">
+          <div class="img-wrap">
+            <div class="img-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.26c0 0 2.77-7.73 11.18-9.64C9.93 10.56 5.11 14.15 3 19c0 0 5.79-11.05 14.18-9.26A14.28 14.28 0 0 1 20 22c0-6.94-4.4-11-11-14z"/></svg>
+              Naturmad & Sankning
+            </div>
+            <img src="https://placehold.co/600x360/1a3028/90b090?text=Sankning+i+Thy" alt="Sankning af vilde urter i Thy" style="height:240px;">
+          </div>
+          <div style="padding:1.5rem;">
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+              <span class="sub-tag">Oplevelse</span>
+              <span class="sub-tag">Mad & Smag</span>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.35rem; letter-spacing:-0.01em; color:#1c3a45; margin-bottom:0.5rem;">Sankning & vild naturmad</h3>
+            <p style="color:#3d5560; font-size:0.9rem; line-height:1.7; margin-bottom:1.25rem;">Hyldeblomst fra hækkene, strandkål ved havet, vilde bær i skoven. Thys natur er fyldt med råvarer — og lokale guider der kender dem alle.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+              <span style="display:flex; align-items:center; gap:0.35rem; color:#b5873a; font-weight:700; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.5;">Kommer snart</span>
+              <span style="display:flex; align-items:center; gap:0.3rem; font-size:0.72rem; color:rgba(28,58,69,0.4);">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Hele Thy
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Dark Sky -->
+        <div class="exp-card" tabindex="0" role="article" aria-label="Dark Sky ved Bulbjerg — stjernekigning">
+          <div class="img-wrap">
+            <div class="img-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              Dark Sky Park
+            </div>
+            <img src="https://placehold.co/600x360/06111a/6080a0?text=Bulbjerg+·+Dark+Sky" alt="Stjernehimlen over Bulbjerg, Thy" style="height:240px;">
+          </div>
+          <div style="padding:1.5rem;">
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+              <span class="sub-tag">Oplevelse</span>
+              <span class="sub-tag">Natur</span>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.35rem; letter-spacing:-0.01em; color:#1c3a45; margin-bottom:0.5rem;">Dark Sky ved Bulbjerg</h3>
+            <p style="color:#3d5560; font-size:0.9rem; line-height:1.7; margin-bottom:1.25rem;">Internationalt anerkendt Dark Sky Park — langt fra bylys, tæt på mælkevejen. Stjernekigning ved havet, hvor mørket er en kvalitet i sig selv.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+              <span style="display:flex; align-items:center; gap:0.35rem; color:#b5873a; font-weight:700; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.5;">Kommer snart</span>
+              <span style="display:flex; align-items:center; gap:0.3rem; font-size:0.72rem; color:rgba(28,58,69,0.4);">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Lild Strand / Bulbjerg
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Editorial: Steder hele året -->
+    <div style="margin-top:5rem; background:#1c3a45; border-radius:1.25rem; padding:3.5rem 3rem; position:relative; overflow:hidden;" class="noise-bg">
+      <div style="position:absolute; top:-60px; right:-60px; width:260px; height:260px; border-radius:50%; border:1px solid rgba(181,135,58,0.12); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:-40px; left:-40px; width:180px; height:180px; border-radius:50%; border:1px solid rgba(181,135,58,0.08); pointer-events:none;"></div>
+      <div style="position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;" class="feat-grid">
+        <div>
+          <div style="font-size:0.7rem; font-weight:700; color:rgba(181,135,58,0.8); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.75rem;">Hele året</div>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.75rem,3vw,2.6rem); font-weight:700; color:#fff; letter-spacing:-0.01em; line-height:1.15; margin-bottom:1.25rem;">
+            Steder kender ingen sæson
+          </h2>
+          <p style="color:rgba(255,255,255,0.6); line-height:1.85; font-size:0.95rem;">
+            Sommerens stille strandvandringer, efterårets farverige klithede, vinterens mørke hav og forårets første blomstertæpper — Thy tilbyder en anden form for velvære i hvert eneste årstid.
+          </p>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:0.875rem; padding:1.25rem;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:#b5873a; margin-bottom:0.4rem;">Sommer</div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.6;">Koldbad, klitter og midnatssol over Vesterhavet</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:0.875rem; padding:1.25rem;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:#b5873a; margin-bottom:0.4rem;">Efterår</div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.6;">Sankning, hede i brand og whisky i fadlageret</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:0.875rem; padding:1.25rem;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:#b5873a; margin-bottom:0.4rem;">Vinter</div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.6;">Storm, Dark Sky og vinterhavets rensende kraft</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:0.875rem; padding:1.25rem;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:#b5873a; margin-bottom:0.4rem;">Forår</div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.6;">Trækfugle ved Agger, første blomster i nationalparken</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer style="background:#0f2028; color:rgba(255,255,255,0.5); padding:2.5rem 1.5rem; text-align:center;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-bottom:1rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" width="24" height="22" aria-hidden="true">
+          <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+        </svg>
+        <span style="color:#fff; font-weight:900; font-size:0.9rem; font-family:'Lato',sans-serif;">explore<span style="color:#b5873a;">thy</span></span>
+      </div>
+      <p style="font-size:0.8rem; margin-bottom:0.5rem;">© 2026 explorethy · <a href="mailto:info@explorethy.dk" style="color:#b5873a;">info@explorethy.dk</a></p>
+      <p style="font-size:0.72rem; opacity:0.55;">Turistportal for Thy og Nordvestkysten · Billeder: <a href="https://whiskymag.com" target="_blank" rel="noopener" style="color:rgba(181,135,58,0.6);">Whisky Magazine</a> & placehold.co</p>
+    </div>
+  </footer>
+
+</body>
+</html>
