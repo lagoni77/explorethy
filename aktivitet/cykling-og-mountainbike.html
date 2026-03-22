@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cykling og mountainbike i Thy — Ruter langs Vestkysten | explorethy</title>
+  <meta name="description" content="Thy byder på cykelruter langs vestkysten, mountainbike-stier i plantagen og den populære Rute 1 langs Nordsøkysten. Flade og kuperede ruter for alle niveauer.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://explorethy.dk/aktivitet/cykling-og-mountainbike">
+  <link rel="alternate" hreflang="da" href="https://explorethy.dk/aktivitet/cykling-og-mountainbike">
+  <link rel="alternate" hreflang="x-default" href="https://explorethy.dk/aktivitet/cykling-og-mountainbike">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cykling og mountainbike i Thy — Ruter langs Vestkysten">
+  <meta property="og:description" content="Thy byder på cykelruter langs vestkysten, mountainbike-stier i plantagen og den populære Rute 1 langs Nordsøkysten. Flade og kuperede ruter for alle niveauer.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://explorethy.dk/aktivitet/cykling-og-mountainbike">
+  <meta property="og:image" content="https://gdkfiles.visitdenmark.com/files/463/255694_Nationalpark_Thy_Cykling_Klitmller_VisitThy.jpg">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="explorethy">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": "Cykling i Thy",
+    "description": "Thy byder på cykelruter langs vestkysten, mountainbike-stier i Klitmøller Plantage og den nationale cykelrute Rute 1 — Nordsøvej langs Nordsøkysten.",
+    "url": "https://explorethy.dk/aktivitet/cykling-og-mountainbike",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Thy",
+      "addressRegion": "Nordjylland",
+      "addressCountry": "DK"
+    },
+    "touristType": ["Cyklister", "Mountainbikere", "Familier", "Naturelskere"],
+    "inLanguage": "da",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "explorethy",
+      "url": "https://explorethy.dk"
+    }
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --gold: #b5873a; --teal: #1c3a45; --bg: #f2f1f0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', sans-serif; background: #f2f1f0; color: #1c3a45; }
+    html { scroll-behavior: smooth; }
+
+    .nav-link {
+      color: rgba(255,255,255,0.82); font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.25rem 0; border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s; text-decoration: none;
+    }
+    .nav-link:hover { color: #fff; border-bottom-color: #b5873a; }
+    .nav-link:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 2px; }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #b5873a; color: #fff; font-family: 'Lato', sans-serif;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+      padding: 0.75rem 1.75rem; border-radius: 9999px;
+      box-shadow: 0 4px 18px rgba(181,135,58,0.35);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer; border: none; text-decoration: none;
+    }
+    .btn-gold:hover { background: #a07530; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,135,58,0.45); }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    .hero-wrap { position: relative; height: min(85vh, 680px); overflow: hidden; }
+    .hero-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,32,40,0.96) 0%, rgba(15,32,40,0.4) 45%, rgba(0,0,0,0.05) 100%);
+    }
+    .hero-tint { position: absolute; inset: 0; background: rgba(28,58,69,0.1); mix-blend-mode: multiply; }
+
+    .breadcrumb a {
+      color: rgba(255,255,255,0.55); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: #b5873a; }
+    .breadcrumb span { color: rgba(255,255,255,0.3); font-size: 0.8rem; margin: 0 0.4rem; }
+
+    .info-pill {
+      display: flex; align-items: center; gap: 0.65rem;
+      background: #fff; padding: 0.85rem 1.1rem; border-radius: 0.75rem;
+      box-shadow: 0 2px 12px rgba(28,58,69,0.1);
+    }
+    .info-pill-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(181,135,58,0.1); border: 1px solid rgba(181,135,58,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: #b5873a;
+    }
+    .info-pill-label { font-size: 0.7rem; font-weight: 700; color: #b5873a; letter-spacing: 0.06em; text-transform: uppercase; }
+    .info-pill-value { font-size: 0.9rem; font-weight: 700; color: #1c3a45; }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; color: #1c3a45;
+    }
+    .gold-divider { width: 3rem; height: 3px; background: #b5873a; border-radius: 9999px; }
+
+    .pull-quote {
+      border-left: 4px solid #b5873a; padding: 1.25rem 1.5rem;
+      background: rgba(181,135,58,0.06); border-radius: 0 0.75rem 0.75rem 0;
+    }
+
+    .fact-card {
+      background: #1c3a45; border-radius: 1rem;
+      padding: 1.75rem;
+      box-shadow: 0 8px 32px rgba(28,58,69,0.3);
+      position: sticky; top: 80px;
+    }
+
+    .noise-bg { position: relative; }
+    .noise-bg::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.04;
+    }
+
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+    .hamburger { cursor: pointer; padding: 0.5rem; background: none; border: none; }
+    .hamburger:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 4px; }
+
+    @media (max-width: 768px) {
+      .md-only { display: none !important; }
+      .two-col { grid-template-columns: 1fr !important; }
+      .hero-wrap { height: min(70vh, 500px); }
+      .fact-card { position: static; }
+    }
+    @media (min-width: 769px) {
+      .mob-only { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav style="background:#1c3a45; position:sticky; top:0; z-index:50; box-shadow:0 2px 16px rgba(0,0,0,0.2);">
+    <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; height:64px;">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.6rem; text-decoration:none;" aria-label="explorethy hjem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" width="32" height="30" aria-hidden="true">
+            <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+          </svg>
+          <span style="color:#fff; font-weight:900; font-size:1.05rem; letter-spacing:-0.01em;">explore<span style="color:#b5873a;">thy</span></span>
+        </a>
+
+        <div class="md-only" style="display:flex; align-items:center; gap:2rem;">
+          <a href="../natur/" class="nav-link">Natur</a>
+          <a href="index.html" class="nav-link" style="color:#b5873a; border-bottom-color:#b5873a;">Aktivitet</a>
+          <a href="../steder/" class="nav-link">Steder</a>
+          <a href="../index.html#kontakt" class="btn-gold" style="padding:0.5rem 1.25rem; font-size:0.8rem;">Planlæg besøg</a>
+        </div>
+
+        <button class="hamburger mob-only" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" style="padding-bottom:1rem;">
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <a href="index.html" class="nav-link" style="color:#b5873a;">← Aktivitet</a>
+          <a href="../index.html" class="nav-link">Hjem</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <div class="hero-wrap">
+    <img
+      src="https://gdkfiles.visitdenmark.com/files/463/255694_Nationalpark_Thy_Cykling_Klitmller_VisitThy.jpg"
+      alt="Cyklist på kyststi i Nationalpark Thy med udsigt til Vesterhavet"
+      loading="eager"
+      onerror="this.src='https://placehold.co/1400x680/1c3a45/b5873a?text=Cykling+i+Thy'"
+    >
+    <div class="hero-overlay"></div>
+    <div class="hero-tint"></div>
+
+    <div style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:2.5rem 2rem 3rem; max-width:1200px; margin:0 auto; width:100%;">
+      <nav class="breadcrumb" style="margin-bottom:1.5rem;" aria-label="Brødkrumme">
+        <a href="../index.html">Hjem</a>
+        <span>›</span>
+        <a href="index.html">Aktivitet</a>
+        <span>›</span>
+        <span style="color:rgba(255,255,255,0.75); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;">Cykling og mountainbike</span>
+      </nav>
+
+      <div style="display:flex; gap:0.6rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <span style="display:inline-flex; align-items:center; gap:0.4rem; background:rgba(181,135,58,0.9); color:#fff; font-size:0.7rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:0.35rem 0.9rem; border-radius:9999px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Nationalpark Thy
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:0.4rem; background:rgba(255,255,255,0.15); color:#fff; font-size:0.7rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:0.35rem 0.9rem; border-radius:9999px; border:1px solid rgba(255,255,255,0.25); backdrop-filter:blur(4px);">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Hele året
+        </span>
+      </div>
+
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,6vw,4.5rem); font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:1.0; margin-bottom:0.85rem;">
+        Cykling i Thy
+      </h1>
+      <p style="color:rgba(255,255,255,0.75); font-size:1.05rem; max-width:520px; line-height:1.7; margin-bottom:2rem;">
+        Langs vestkysten, gennem plantagen og ad Rute 1 — Nordsøvej.
+      </p>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#ruter" class="btn-gold">
+          Se cykelruter
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div style="position:absolute; bottom:1rem; right:1rem; font-size:0.65rem; color:rgba(255,255,255,0.4);">
+      Foto: <a href="https://www.visitthy.dk" target="_blank" rel="noopener" style="color:rgba(181,135,58,0.6); text-decoration:none;">VisitThy</a>
+    </div>
+  </div>
+
+  <!-- ─── INFO BAR ─── -->
+  <div style="background:#fff; border-bottom:1px solid rgba(28,58,69,0.08); padding:1.25rem 1.5rem;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(195px,1fr)); gap:0.75rem;">
+      <div class="info-pill">
+        <div class="info-pill-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M12 17V7l-7 3 7 3"/><path d="M12 7l5 5"/></svg>
+        </div>
+        <div>
+          <div class="info-pill-label">National cykelrute</div>
+          <div class="info-pill-value">Rute 1 — Nordsøvej</div>
+        </div>
+      </div>
+      <div class="info-pill">
+        <div class="info-pill-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 4 4-6 4 10"/></svg>
+        </div>
+        <div>
+          <div class="info-pill-label">Terræn</div>
+          <div class="info-pill-value">Fladt og kuperet</div>
+        </div>
+      </div>
+      <div class="info-pill">
+        <div class="info-pill-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="info-pill-label">MTB-stier</div>
+          <div class="info-pill-value">Klitmøller Plantage</div>
+        </div>
+      </div>
+      <div class="info-pill">
+        <div class="info-pill-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="info-pill-label">Adgang</div>
+          <div class="info-pill-value">Gratis, hele året</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MAIN CONTENT ─── -->
+  <div style="max-width:1200px; margin:0 auto; padding:4rem 1.5rem;">
+    <div class="two-col" style="display:grid; grid-template-columns:1fr 340px; gap:4rem; align-items:start;">
+
+      <!-- ─── LEFT COLUMN ─── -->
+      <div id="ruter">
+
+        <!-- Intro -->
+        <div style="margin-bottom:3rem;">
+          <div class="gold-divider" style="margin-bottom:1rem;"></div>
+          <p style="font-size:0.7rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.75rem;">Cykling i Thy</p>
+          <h2 class="section-heading" style="margin-bottom:1.5rem;">Ruter der følger kysten — ikke turiststrømmene</h2>
+          <div style="font-size:1.05rem; line-height:1.85; color:#3d5560; max-width:620px;">
+            <p style="margin-bottom:1rem;">Thy er cyklistens paradis — flade marsklandskaber skifter med bakker op over klitterne, og kyststien kan følges i årevis uden at møde en trafiklys. Den nationale cykelrute Rute 1 — Nordsøvej — går direkte igennem Thy og er en af Danmarks smukkeste cykelruter.</p>
+            <p style="margin-bottom:1rem;">Mountainbike-stier i Klitmøller Plantage tilbyder kuperet terræn med udsigt til havet. Her veksler sanddækkede spor med tæt kystskov, og stierne er tilpasset både begyndere og erfarne MTB-ryttere på udkig efter tekniske passager med naturlig modstand.</p>
+          </div>
+
+          <div class="pull-quote" style="margin-top:2rem; max-width:580px;">
+            <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-style:italic; color:#1c3a45; line-height:1.5; margin-bottom:0.5rem;">
+              "Thy er stort nok til at fare vild på to hjul — og lille nok til altid at finde hjem igen."
+            </p>
+            <p style="font-size:0.72rem; font-weight:700; color:#b5873a; letter-spacing:0.08em; text-transform:uppercase;">Explorethy</p>
+          </div>
+        </div>
+
+        <!-- Ruter & Ressourcer -->
+        <div style="margin-bottom:3.5rem;">
+          <div class="gold-divider" style="margin-bottom:1rem;"></div>
+          <p style="font-size:0.7rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.75rem;">Ruter &amp; Ressourcer</p>
+          <h2 class="section-heading" style="margin-bottom:1rem;">Find din cykelrute</h2>
+          <p style="font-size:1rem; line-height:1.8; color:#3d5560; margin-bottom:1.75rem; max-width:580px;">Fra familietur langs kysten til teknisk mountainbike i plantagen — her er de officielle ressourcer:</p>
+
+          <div style="display:flex; flex-direction:column; gap:0.85rem;">
+            <a href="https://www.nationalcykelruter.dk/cykelruter/nordsoekysten" target="_blank" rel="noopener" style="display:flex; align-items:flex-start; gap:1rem; background:#fff; border-radius:0.875rem; padding:1.25rem 1.25rem; box-shadow:0 2px 12px rgba(28,58,69,0.09); text-decoration:none; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(28,58,69,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(28,58,69,0.09)'">
+              <div style="width:44px; height:44px; border-radius:0.6rem; background:rgba(181,135,58,0.12); border:1.5px solid rgba(181,135,58,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#b5873a;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M12 17V7l-7 3 7 3"/><path d="M12 7l5 5"/></svg>
+              </div>
+              <div style="flex:1; min-width:0;">
+                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.2rem;">
+                  <div style="font-size:0.9rem; font-weight:700; color:#1c3a45;">Rute 1 — Nordsøvej</div>
+                  <span style="font-size:0.65rem; font-weight:700; background:rgba(181,135,58,0.1); color:#b5873a; border:1px solid rgba(181,135,58,0.25); padding:0.15rem 0.55rem; border-radius:9999px; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">National cykelrute</span>
+                </div>
+                <div style="font-size:0.82rem; color:#3d5560; line-height:1.5;">Danmarks mest populære nationale cykelrute følger vestkysten gennem Thy — fra Agger til Hanstholm</div>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b5873a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+
+            <a href="https://nationalparkthy.dk/oplev-nationalparken/aktiv-i-naturen/cykling/" target="_blank" rel="noopener" style="display:flex; align-items:flex-start; gap:1rem; background:#fff; border-radius:0.875rem; padding:1.25rem 1.25rem; box-shadow:0 2px 12px rgba(28,58,69,0.09); text-decoration:none; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(28,58,69,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(28,58,69,0.09)'">
+              <div style="width:44px; height:44px; border-radius:0.6rem; background:rgba(181,135,58,0.12); border:1.5px solid rgba(181,135,58,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#b5873a;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg>
+              </div>
+              <div style="flex:1; min-width:0;">
+                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.2rem;">
+                  <div style="font-size:0.9rem; font-weight:700; color:#1c3a45;">Cykelruter i Nationalpark Thy</div>
+                  <span style="font-size:0.65rem; font-weight:700; background:rgba(181,135,58,0.1); color:#b5873a; border:1px solid rgba(181,135,58,0.25); padding:0.15rem 0.55rem; border-radius:9999px; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">59 ruter</span>
+                </div>
+                <div style="font-size:0.82rem; color:#3d5560; line-height:1.5;">Officiel oversigt over cykelruter i og omkring nationalparken — inkl. familievenlige ruter</div>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b5873a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+
+            <a href="https://www.visitthy.dk/da/activities/mountainbike-i-klitmollerplantagen" target="_blank" rel="noopener" style="display:flex; align-items:flex-start; gap:1rem; background:#fff; border-radius:0.875rem; padding:1.25rem 1.25rem; box-shadow:0 2px 12px rgba(28,58,69,0.09); text-decoration:none; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(28,58,69,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(28,58,69,0.09)'">
+              <div style="width:44px; height:44px; border-radius:0.6rem; background:rgba(181,135,58,0.12); border:1.5px solid rgba(181,135,58,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#b5873a;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M12 17V7l-7 3 7 3"/><path d="M12 7l5 5"/></svg>
+              </div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-size:0.9rem; font-weight:700; color:#1c3a45; margin-bottom:0.2rem;">MTB-stier i Klitmøller Plantage</div>
+                <div style="font-size:0.82rem; color:#3d5560; line-height:1.5;">Tekniske stier i den tætte kystplantage — kuperet terræn med havudsigt og sandfald</div>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b5873a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Årstider -->
+        <div style="margin-bottom:3.5rem;">
+          <div class="gold-divider" style="margin-bottom:1rem;"></div>
+          <p style="font-size:0.7rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.75rem;">Sæsoner</p>
+          <h2 class="section-heading" style="margin-bottom:1.75rem;">Cykling i Thy hele året</h2>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem;">
+            <div style="background:#fff; border-radius:1rem; padding:1.5rem; box-shadow:0 2px 16px rgba(28,58,69,0.09); border-top:3px solid #b5873a;">
+              <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+                <div style="width:32px; height:32px; border-radius:50%; background:rgba(181,135,58,0.12); display:flex; align-items:center; justify-content:center; color:#b5873a; flex-shrink:0;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:#1c3a45;">Forår</span>
+              </div>
+              <p style="font-size:0.88rem; line-height:1.7; color:#3d5560;">Klithederne blomstrer langs cykelstien. Perfekt temperatur og ingen trængsler.</p>
+            </div>
+
+            <div style="background:#fff; border-radius:1rem; padding:1.5rem; box-shadow:0 2px 16px rgba(28,58,69,0.09);">
+              <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+                <div style="width:32px; height:32px; border-radius:50%; background:rgba(28,58,69,0.06); display:flex; align-items:center; justify-content:center; color:#1c3a45; flex-shrink:0;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.26c0 0 2.77-7.73 11.18-9.64C9.93 10.56 5.11 14.15 3 19c0 0 5.79-11.05 14.18-9.26A14.28 14.28 0 0 1 20 22c0-6.94-4.4-11-11-14z"/></svg>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:#1c3a45;">Sommer</span>
+              </div>
+              <p style="font-size:0.88rem; line-height:1.7; color:#3d5560;">Rute 1 er mest travl — men kyststien er altid bred nok. Medbring solcreme.</p>
+            </div>
+
+            <div style="background:#fff; border-radius:1rem; padding:1.5rem; box-shadow:0 2px 16px rgba(28,58,69,0.09);">
+              <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+                <div style="width:32px; height:32px; border-radius:50%; background:rgba(28,58,69,0.06); display:flex; align-items:center; justify-content:center; color:#1c3a45; flex-shrink:0;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.024 7.498a.706.706 0 0 1-.998 0L1.249 3.726A.706.706 0 0 0 0 4.226V16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4.226a.706.706 0 0 0-1.249-.5L12.974 7.5a.706.706 0 0 1-.999 0L9.203 4.202z"/></svg>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:#1c3a45;">Efterår</span>
+              </div>
+              <p style="font-size:0.88rem; line-height:1.7; color:#3d5560;">Plantagen er gylden. MTB-stierne er fast — og du deler dem med de færreste.</p>
+            </div>
+
+            <div style="background:#fff; border-radius:1rem; padding:1.5rem; box-shadow:0 2px 16px rgba(28,58,69,0.09);">
+              <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+                <div style="width:32px; height:32px; border-radius:50%; background:rgba(28,58,69,0.06); display:flex; align-items:center; justify-content:center; color:#1c3a45; flex-shrink:0;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="8" y1="20" x2="8.01" y2="20"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="12" y1="22" x2="12.01" y2="22"/><line x1="16" y1="16" x2="16.01" y2="16"/><line x1="16" y1="20" x2="16.01" y2="20"/></svg>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:#1c3a45;">Vinter</span>
+              </div>
+              <p style="font-size:0.88rem; line-height:1.7; color:#3d5560;">Vindmodstand er garanteret. Men det er udsigten fra klittoppen også.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cross-link CTA -->
+        <div style="background:#1c3a45; border-radius:1rem; padding:2.5rem; position:relative; overflow:hidden; margin-bottom:3.5rem;" class="noise-bg">
+          <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+            <div>
+              <p style="font-size:0.7rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">Mere i nationalparken</p>
+              <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.75rem; font-weight:700; color:#fff; letter-spacing:-0.01em; margin-bottom:0.5rem;">Vandring i Nationalpark Thy</h3>
+              <p style="color:rgba(255,255,255,0.7); font-size:0.95rem; line-height:1.7; max-width:440px;">Foretrækker du at gå? Nationalparken har 59 afmærkede vandreruter — inkl. den 67 km lange Redningsvejen langs kysten.</p>
+            </div>
+            <a href="vandring.html" class="btn-gold">
+              Se vandreruter
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ─── RIGHT COLUMN (SIDEBAR) ─── -->
+      <div>
+        <div class="fact-card">
+          <p style="font-size:0.65rem; font-weight:700; color:#b5873a; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1.25rem;">Cykling i Thy — fakta</p>
+
+          <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:0.82rem; color:rgba(255,255,255,0.6); font-weight:600;">National rute</span>
+              <span style="font-size:0.9rem; color:#fff; font-weight:700;">Rute 1 — Nordsøvej</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:0.82rem; color:rgba(255,255,255,0.6); font-weight:600;">MTB-stier</span>
+              <span style="font-size:0.9rem; color:#fff; font-weight:700;">Klitmøller Plantage</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:0.82rem; color:rgba(255,255,255,0.6); font-weight:600;">Terræn</span>
+              <span style="font-size:0.9rem; color:#fff; font-weight:700;">Fladt + kuperet</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:0.82rem; color:rgba(255,255,255,0.6); font-weight:600;">Adgang</span>
+              <span style="font-size:0.9rem; color:#fff; font-weight:700;">Gratis, hele året</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:0.82rem; color:rgba(255,255,255,0.6); font-weight:600;">Sæson</span>
+              <span style="font-size:0.9rem; color:#fff; font-weight:700;">Hele året</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.82rem; color:rgba(255,255,255,0.6); font-weight:600;">Udlejning</span>
+              <span style="font-size:0.9rem; color:#fff; font-weight:700;">Thisted + Klitmøller</span>
+            </div>
+          </div>
+
+          <a href="https://nationalparkthy.dk/oplev-nationalparken/aktiv-i-naturen/cykling/" target="_blank" rel="noopener" class="btn-gold" style="width:100%; justify-content:center; margin-bottom:0.85rem;">
+            Se cykelruter
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.45); text-align:center; line-height:1.5;">Officielle cykelruter i Nationalpark Thy</p>
+        </div>
+
+        <!-- Andre aktiviteter -->
+        <div style="margin-top:3.5rem; padding-top:2.5rem; border-top:1px solid rgba(28,58,69,0.12);">
+          <div style="font-size:0.7rem; font-weight:700; color:#b5873a; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;">Andre aktiviteter</div>
+
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <a href="vandring.html" style="display:flex; align-items:center; gap:0.9rem; background:#fff; border-radius:0.875rem; padding:0.9rem 1rem; box-shadow:0 2px 12px rgba(28,58,69,0.09); text-decoration:none; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(28,58,69,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(28,58,69,0.09)'">
+              <div style="width:48px; height:48px; border-radius:0.6rem; background:#1c3a45; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Lato',sans-serif; font-weight:900; font-size:0.7rem; color:#b5873a; letter-spacing:0.04em;">VD</div>
+              <div>
+                <p style="font-size:0.9rem; font-weight:700; color:#1c3a45; margin-bottom:0.1rem;">Vandring i Nationalparken</p>
+                <p style="font-size:0.8rem; color:#3d5560; line-height:1.4;">59 ruter i klithede og kyst</p>
+              </div>
+            </a>
+
+            <a href="surfing-cold-hawaii.html" style="display:flex; align-items:center; gap:0.9rem; background:#fff; border-radius:0.875rem; padding:0.9rem 1rem; box-shadow:0 2px 12px rgba(28,58,69,0.09); text-decoration:none; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(28,58,69,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(28,58,69,0.09)'">
+              <div style="width:48px; height:48px; border-radius:0.6rem; background:#1c3a45; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Lato',sans-serif; font-weight:900; font-size:0.7rem; color:#b5873a; letter-spacing:0.04em;">CH</div>
+              <div>
+                <p style="font-size:0.9rem; font-weight:700; color:#1c3a45; margin-bottom:0.1rem;">Surfing — Cold Hawaii</p>
+                <p style="font-size:0.8rem; color:#3d5560; line-height:1.4;">31 surfspots langs vestkysten</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer style="background:#0f2028; padding:3rem 1.5rem 2rem;" class="noise-bg">
+    <div style="max-width:1200px; margin:0 auto; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:2rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:2rem;">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.6rem; text-decoration:none;" aria-label="explorethy hjem">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" width="28" height="26" aria-hidden="true">
+            <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+          </svg>
+          <span style="color:#fff; font-weight:900; font-size:1rem; letter-spacing:-0.01em;">explore<span style="color:#b5873a;">thy</span></span>
+        </a>
+        <nav style="display:flex; gap:1.5rem; flex-wrap:wrap;" aria-label="Footer navigation">
+          <a href="../natur/" style="color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Natur</a>
+          <a href="../aktivitet/" style="color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Aktivitet</a>
+          <a href="../oplevelser/" style="color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Oplevelser</a>
+          <a href="../steder/" style="color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Steder</a>
+          <a href="../velvaere/" style="color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Velvære</a>
+        </nav>
+      </div>
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); text-align:center;">© 2026 explorethy · Thy, Nordjylland · <a href="#" style="color:rgba(181,135,58,0.5); text-decoration:none;">Privatlivspolitik</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

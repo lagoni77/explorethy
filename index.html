@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>explorethy – Rå natur. Vild kyst. Uforglemmelige oplevelser.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Lato', sans-serif; }
+    :root {
+      --gold: #b5873a;
+      --teal: #1c3a45;
+      --bg: #f2f1f0;
+    }
+    html { scroll-behavior: smooth; }
+
+    /* Nav */
+    .nav-link {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-link:hover { color: #fff; border-bottom-color: #b5873a; }
+    .nav-link:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 2px; }
+
+    /* Hero */
+    .hero-bg {
+      background-image:
+        linear-gradient(to top, rgba(28,58,69,0.92) 0%, rgba(28,58,69,0.45) 45%, rgba(0,0,0,0.2) 100%),
+        url('https://placehold.co/1920x900/1e4a38/c8d8b0?text=Klithede+·+Vesterhavet+·+Nationalpark+Thy');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    /* Scroll arrow */
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+    .scroll-arrow { animation: bounce-slow 2s ease-in-out infinite; }
+
+    /* Section headings */
+    .section-heading {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .body-text { line-height: 1.75; font-size: 1.0625rem; }
+
+    /* Buttons */
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #b5873a; color: #fff;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+      padding: 0.75rem 1.75rem; border-radius: 9999px;
+      box-shadow: 0 4px 18px rgba(181,135,58,0.35);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn-gold:hover { background: #a07530; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,135,58,0.45); }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: #fff;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+      padding: 0.7rem 1.75rem; border-radius: 9999px;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .btn-outline-white:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+    /* Category pills */
+    .cat-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.5rem 1.1rem; border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .cat-pill:hover { background: #b5873a; color: #fff; border-color: #b5873a; }
+    .cat-pill:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    /* Sub-tags */
+    .sub-tag {
+      display: inline-block;
+      background: rgba(181,135,58,0.12); color: #b5873a;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 9999px;
+      border: 1px solid rgba(181,135,58,0.3);
+    }
+
+    /* Photo cards */
+    .photo-card {
+      position: relative; overflow: hidden; border-radius: 0.75rem;
+      box-shadow: 0 4px 24px rgba(28,58,69,0.18);
+      cursor: pointer;
+    }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.4s; }
+    .photo-card:hover img { transform: scale(1.04); }
+    .photo-card .label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(28,58,69,0.85) 0%, transparent 100%);
+      padding: 1.5rem 1rem 1rem;
+      color: #fff; font-weight: 700; font-size: 1rem; letter-spacing: 0.01em;
+    }
+    .photo-card:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    /* Noise texture overlay */
+    .noise-overlay::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.035;
+    }
+
+    /* Image color treatment */
+    .img-teal-tint {
+      position: relative;
+    }
+    .img-teal-tint::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: rgba(28,58,69,0.15);
+      mix-blend-mode: multiply;
+    }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    /* Hamburger */
+    .hamburger { cursor: pointer; padding: 0.5rem; }
+    .hamburger:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; border-radius: 4px; }
+
+    /* Steder grid hover */
+    .sted-card {
+      position: relative; overflow: hidden; border-radius: 0.75rem;
+      cursor: pointer;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+    .sted-card img { width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s; }
+    .sted-card:hover img { transform: scale(1.06); }
+    .sted-card .sted-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,58,69,0.9) 0%, rgba(28,58,69,0.1) 60%);
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .sted-card .sted-name {
+      color: #fff; font-weight: 900; font-size: 1.1rem; letter-spacing: -0.01em;
+    }
+    .sted-card .sted-sub {
+      color: rgba(255,255,255,0.65); font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.1rem;
+    }
+    .sted-card:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    /* Overnatning grid */
+    .onat-card {
+      position: relative; overflow: hidden; border-radius: 0.75rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(28,58,69,0.15);
+    }
+    .onat-card img { width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.4s; }
+    .onat-card:hover img { transform: scale(1.05); }
+    .onat-card .onat-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(28,58,69,0.82) 0%, transparent 100%);
+      padding: 1.25rem 1rem 0.85rem;
+      color: #fff; font-weight: 700; font-size: 0.95rem;
+    }
+    .onat-card:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+
+    /* Oplevelser grid */
+    .opl-card {
+      position: relative; overflow: hidden; border-radius: 0.75rem;
+      box-shadow: 0 4px 18px rgba(28,58,69,0.13);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .opl-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(28,58,69,0.22); }
+    .opl-card:focus-visible { outline: 2px solid #b5873a; outline-offset: 4px; }
+    .opl-card img { width: 100%; height: 240px; object-fit: cover; display: block; }
+    .opl-card .opl-body { padding: 1rem; background: #fff; }
+    .opl-card .opl-title { font-weight: 800; font-size: 0.95rem; color: #1c3a45; margin-bottom: 0.25rem; }
+    .opl-card .opl-desc { font-size: 0.82rem; color: #5a6e75; line-height: 1.6; }
+
+    /* Sektions-divider */
+    .wave-divider svg { display: block; width: 100%; }
+  </style>
+</head>
+<body style="background:#f2f1f0; color:#2a3a3e; margin:0; padding:0;">
+
+<!-- ═══════════════════════════════════════════════
+     1. NAVIGATION
+═══════════════════════════════════════════════ -->
+<nav style="background:#1c3a45; position:sticky; top:0; z-index:100; box-shadow:0 2px 20px rgba(0,0,0,0.35);">
+  <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:64px;">
+
+    <!-- Logo -->
+    <a href="#" style="display:flex; align-items:center; gap:0.6rem; text-decoration:none; flex-shrink:0;"
+       aria-label="explorethy – gå til forsiden">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" style="width:32px;height:32px;flex-shrink:0;" aria-hidden="true">
+        <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+      </svg>
+      <span style="font-size:1.35rem; font-weight:900; letter-spacing:-0.02em; color:#fff; line-height:1;">
+        explore<span style="color:#b5873a;">thy</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div style="display:flex; gap:1.75rem; align-items:center;" class="hidden-mobile" id="desktop-nav">
+      <a href="#natur" class="nav-link">Natur</a>
+      <a href="#aktivitet" class="nav-link">Aktivitet</a>
+      <a href="#oplevelser" class="nav-link">Oplevelser</a>
+      <a href="#spisesteder" class="nav-link">Spisesteder</a>
+      <a href="#overnatning" class="nav-link">Overnatning</a>
+      <a href="#steder" class="nav-link">Steder</a>
+      <a href="#velvaere" class="nav-link">Velvære</a>
+      <a href="#praktisk" class="nav-link">Praktisk</a>
+    </div>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Åbn menu" aria-expanded="false"
+            style="display:none;" onclick="toggleMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" style="background:#162e38; border-top:1px solid rgba(255,255,255,0.1); padding:1rem 1.5rem 1.5rem;">
+    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+      <a href="#natur" class="nav-link" onclick="toggleMenu()">Natur</a>
+      <a href="#aktivitet" class="nav-link" onclick="toggleMenu()">Aktivitet</a>
+      <a href="#oplevelser" class="nav-link" onclick="toggleMenu()">Oplevelser</a>
+      <a href="#spisesteder" class="nav-link" onclick="toggleMenu()">Spisesteder</a>
+      <a href="#overnatning" class="nav-link" onclick="toggleMenu()">Overnatning</a>
+      <a href="#steder" class="nav-link" onclick="toggleMenu()">Steder</a>
+      <a href="#velvaere" class="nav-link" onclick="toggleMenu()">Velvære</a>
+      <a href="#praktisk" class="nav-link" onclick="toggleMenu()">Praktisk</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     2. HERO
+═══════════════════════════════════════════════ -->
+<section class="hero-bg" style="min-height:92vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:6rem 1.5rem 5rem; position:relative;">
+  <div style="text-align:center; max-width:780px;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:1.25rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" style="width:52px;height:52px;" aria-hidden="true">
+        <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+      </svg>
+      <h1 style="font-size:clamp(2.8rem,7vw,5.5rem); font-weight:900; letter-spacing:-0.04em; color:#fff; line-height:1; margin:0;">
+        explore<span style="color:#b5873a;">thy</span>
+      </h1>
+    </div>
+    <p style="font-size:clamp(1.1rem,2.5vw,1.5rem); color:rgba(255,255,255,0.9); font-weight:300; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 2.5rem;">
+      Rå natur &nbsp;·&nbsp; Vild kyst &nbsp;·&nbsp; Uforglemmelige oplevelser
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="#natur" class="btn-gold">Udforsk Thy</a>
+      <a href="#steder" class="btn-outline-white">Find et sted</a>
+    </div>
+  </div>
+  <!-- Scroll arrow -->
+  <div class="scroll-arrow" style="position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     3. INTRO BÅND + KATEGORIPILLS
+═══════════════════════════════════════════════ -->
+<section style="background:#1c3a45; padding:4rem 1.5rem; position:relative; overflow:hidden;" class="noise-overlay">
+  <div style="max-width:900px; margin:0 auto; text-align:center; position:relative; z-index:1;">
+    <p style="font-size:clamp(1.1rem,2vw,1.4rem); color:rgba(255,255,255,0.95); font-weight:300; line-height:1.75; margin:0 0 0.75rem;">
+      Thy er Danmarks vildeste hjørne – <strong style="font-weight:700; color:#fff;">244 km² Nationalpark</strong>, Nordeuropas største surf brand og en kystlinje, der ændrer dig.
+    </p>
+    <p style="font-size:1rem; color:rgba(255,255,255,0.6); font-weight:400; line-height:1.7; margin:0 0 2.5rem;">
+      Fra Cold Hawaii til Dark Sky Park. Fra røget fisk til skulpturhaver. Thy uanset årstid.
+    </p>
+    <!-- Category pills -->
+    <div style="display:flex; flex-wrap:wrap; gap:0.65rem; justify-content:center;">
+      <a href="#natur" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+        Natur
+      </a>
+      <a href="#aktivitet" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+        Aktivitet
+      </a>
+      <a href="#oplevelser" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Oplevelser
+      </a>
+      <a href="#spisesteder" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+        Spisesteder
+      </a>
+      <a href="#overnatning" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
+        Overnatning
+      </a>
+      <a href="#steder" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Steder
+      </a>
+      <a href="#velvaere" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+        Velvære
+      </a>
+      <a href="#praktisk" class="cat-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+        Praktisk
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     4. NATUR
+═══════════════════════════════════════════════ -->
+<section id="natur" style="background:#f2f1f0; padding:6rem 1.5rem;">
+  <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+    <!-- Foto venstre -->
+    <div class="photo-card img-teal-tint" style="height:480px;">
+      <img src="https://placehold.co/700x480/3d6b4f/ffffff?text=Nationalpark+Thy+%E2%80%93+Klithede" alt="Klithede i Nationalpark Thy">
+    </div>
+    <!-- Tekst højre -->
+    <div>
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.75rem;">Danmarks første nationalpark</p>
+      <h2 class="section-heading" style="color:#1c3a45; margin:0 0 1.25rem;">Natur</h2>
+      <p class="body-text" style="color:#4a5e65; margin:0 0 1rem;">
+        Nationalpark Thy strækker sig 244 km² fra Agger Tange i syd til Hanstholm i nord. Her mødes Vesterhavet og klitlandskabet i en dramatisk og stille skønhed – skabt af vind, vand og salt gennem årtusinder.
+      </p>
+      <p class="body-text" style="color:#4a5e65; margin:0 0 1.75rem;">
+        Oplev Vejlerne i Nordthy – en af Europas vigtigste fuglelokaliteter – eller tag ud i klitplantagen og pluk kantareller og blåbær. Thy kalder på dig uanset årstid.
+      </p>
+      <!-- Sub-tags -->
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.75rem;">
+        <span class="sub-tag">Nationalpark Thy</span>
+        <span class="sub-tag">Kyster & strande</span>
+        <span class="sub-tag">Vejlerne</span>
+        <span class="sub-tag">Agger Tange</span>
+        <span class="sub-tag">Sanke i naturen</span>
+      </div>
+      <a href="#" class="btn-gold">Udforsk naturen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     5. AKTIVITET (mørk)
+═══════════════════════════════════════════════ -->
+<section id="aktivitet" style="background:#1c3a45; padding:6rem 1.5rem; position:relative; overflow:hidden;" class="noise-overlay">
+  <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; position:relative; z-index:1;">
+    <!-- Tekst venstre -->
+    <div>
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.75rem;">Cold Hawaii & meget mere</p>
+      <h2 class="section-heading" style="color:#fff; margin:0 0 1.25rem;">Aktivitet</h2>
+      <p class="body-text" style="color:rgba(255,255,255,0.78); margin:0 0 1rem;">
+        Cold Hawaii er Nordeuropas største surf brand. 30+ registrerede surfspots fra Vigsø til Agger tilbyder verdensklasse surf til både nybegyndere og professionelle.
+      </p>
+      <p class="body-text" style="color:rgba(255,255,255,0.78); margin:0 0 1.75rem;">
+        Vandre Redningsvejen (67 km), cykle mountainbikeruter, padle kajak på Limfjorden, fiske ved havet eller prøv Thy Cablepark. Der er altid noget i bevægelse i Thy.
+      </p>
+      <!-- Cold Hawaii badge -->
+      <div style="display:inline-flex; align-items:center; gap:0.6rem; background:rgba(181,135,58,0.18); border:1px solid rgba(181,135,58,0.55); border-radius:0.5rem; padding:0.75rem 1.25rem; margin-bottom:1.75rem; box-shadow:0 2px 12px rgba(181,135,58,0.2);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b5873a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+        <div>
+          <div style="color:#b5873a; font-weight:800; font-size:0.85rem; letter-spacing:0.03em;">COLD HAWAII</div>
+          <div style="color:rgba(255,255,255,0.65); font-size:0.75rem;">30+ surf spots · Klitmøller & Vorupør</div>
+        </div>
+      </div>
+      <br>
+      <a href="#" class="btn-gold">Se alle aktiviteter →</a>
+    </div>
+    <!-- Foto højre -->
+    <div class="photo-card" style="height:480px;">
+      <img src="https://placehold.co/700x480/1a4a6e/ffffff?text=Cold+Hawaii+Surfing+–+Klitmøller" alt="Surfing ved Cold Hawaii, Klitmøller">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     6. OPLEVELSER (lys, 3-grid)
+═══════════════════════════════════════════════ -->
+<section id="oplevelser" style="background:#f2f1f0; padding:6rem 1.5rem;">
+  <div style="max-width:1180px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:3.5rem;">
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.5rem;">Kultur, kunst & historie</p>
+      <h2 class="section-heading" style="color:#1c3a45; margin:0 0 1rem;">Oplevelser</h2>
+      <p style="max-width:600px; margin:0 auto; color:#4a5e65; line-height:1.75; font-size:1.0625rem;">
+        Fra stenalderens guldbåde til verdens mørkeste himmel. Thy byder på oplevelser, der sætter spor.
+      </p>
+    </div>
+    <!-- 3-kolonne grid -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
+      <div class="opl-card" tabindex="0">
+        <img src="https://placehold.co/400x200/2d4a3a/ffffff?text=Museum+Thy" alt="Museum Thy">
+        <div class="opl-body">
+          <div class="opl-title">Museer & kulturarv</div>
+          <div class="opl-desc">Museum Thy, Thisted Museum, Bunkermuseum Hanstholm, Kirsten Kjærs Museum og mange flere.</div>
+        </div>
+      </div>
+      <div class="opl-card" tabindex="0">
+        <img src="https://placehold.co/400x200/1a2a4e/ffffff?text=Dark+Sky+Park+Bulbjerg" alt="Dark Sky Park Bulbjerg">
+        <div class="opl-body">
+          <div class="opl-title">Dark Sky Park Bulbjerg</div>
+          <div class="opl-desc">Internationalt anerkendt stjernehimmel. Oplev Mælkevejen over Vesterhavet på en klar vinternat.</div>
+        </div>
+      </div>
+      <div class="opl-card" tabindex="0">
+        <img src="https://placehold.co/400x200/4a3a2a/ffffff?text=SMK+Thy+2025" alt="SMK Thy åbner 2025">
+        <div class="opl-body">
+          <div class="opl-title">SMK Thy – åbner sommer 2025</div>
+          <div class="opl-desc">Nationalmuseets nye filial i Doverodde Købmandsgård. Håndplukkede mesterværker i naturskønne omgivelser.</div>
+        </div>
+      </div>
+      <div class="opl-card" tabindex="0">
+        <img src="https://placehold.co/400x200/3a4a2a/ffffff?text=Fyrtårne" alt="Fyrtårne langs Nordvestkysten">
+        <div class="opl-body">
+          <div class="opl-title">Fyrtårne & pejlemærker</div>
+          <div class="opl-desc">Det Nordatlantiske Fyr i Hanstholm (1842), Lodbjerg Fyr og Signalmasten Agger.</div>
+        </div>
+      </div>
+      <div class="opl-card" tabindex="0">
+        <img src="https://placehold.co/400x200/4a2a3a/ffffff?text=Kunst+%26+Gallerier" alt="Kunst og gallerier i Thy">
+        <div class="opl-body">
+          <div class="opl-title">Kunst & gallerier</div>
+          <div class="opl-desc">Kunsthal Thy, Annette Falk Lund, Skulpturhaven i Svankjær og 10+ gallerier spredt over Thy.</div>
+        </div>
+      </div>
+      <div class="opl-card" tabindex="0">
+        <img src="https://placehold.co/400x200/2a3a4a/ffffff?text=Events+%26+Lokalliv" alt="Events i Thy">
+        <div class="opl-body">
+          <div class="opl-title">Events & lokalt liv</div>
+          <div class="opl-desc">Heavy Agger festival, Trolderuterne, Thy Trail Marathon og sæsonens mange lokale begivenheder.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#" class="btn-gold">Se alle oplevelser →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     7. SPISESTEDER (guld-tinted baggrund)
+═══════════════════════════════════════════════ -->
+<section id="spisesteder" style="background:#fdf8f0; padding:6rem 1.5rem; border-top:1px solid rgba(181,135,58,0.15);">
+  <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+    <!-- Tekst venstre -->
+    <div>
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.75rem;">Smagen af Thy</p>
+      <h2 class="section-heading" style="color:#1c3a45; margin:0 0 1.25rem;">Spisesteder</h2>
+      <p class="body-text" style="color:#4a5e65; margin:0 0 1rem;">
+        I Thy er mad oplevelser, minder og øjeblikke. Friskfanget fisk direkte fra fiskekutteren, smage årstidens bedste håndplukkede svampe og bær, eller nyde et Thisted Bryghus-øl med udsigt til Vesterhavet.
+      </p>
+      <p class="body-text" style="color:#4a5e65; margin:0 0 1.75rem;">
+        Fra Det Gamle Røgeri i Hanstholm til Stenbjerg Kro og Thy Whisky – Thy's madscene er dybt forankret i lokale råvarer og håndværk.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.75rem;">
+        <span class="sub-tag">Frisk fisk & skaldyr</span>
+        <span class="sub-tag">Thy Whisky</span>
+        <span class="sub-tag">Thisted Bryghus</span>
+        <span class="sub-tag">Sanke & bær</span>
+        <span class="sub-tag">Røgerier</span>
+      </div>
+      <a href="#" class="btn-gold">Find et spisested →</a>
+    </div>
+    <!-- 2x2 billedgrid højre -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+      <div class="photo-card" style="height:200px;">
+        <img src="https://placehold.co/350x200/3a2a1a/ffffff?text=Røget+fisk" alt="Røget fisk fra Hanstholm">
+        <div class="label" style="font-size:0.85rem;">Røget fisk</div>
+      </div>
+      <div class="photo-card" style="height:200px;">
+        <img src="https://placehold.co/350x200/4a6a2a/ffffff?text=Havtorn+%26+bær" alt="Havtorn og vilde bær">
+        <div class="label" style="font-size:0.85rem;">Havtorn & vilde bær</div>
+      </div>
+      <div class="photo-card" style="height:200px;">
+        <img src="https://placehold.co/350x200/2a1a3a/ffffff?text=Thy+Whisky" alt="Thy Whisky destilleri">
+        <div class="label" style="font-size:0.85rem;">Thy Whisky</div>
+      </div>
+      <div class="photo-card" style="height:200px;">
+        <img src="https://placehold.co/350x200/3a4a1a/ffffff?text=Thisted+Bryghus" alt="Thisted Bryghus">
+        <div class="label" style="font-size:0.85rem;">Thisted Bryghus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     8. OVERNATNING
+═══════════════════════════════════════════════ -->
+<section id="overnatning" style="background:#f2f1f0; padding:6rem 1.5rem;">
+  <div style="max-width:1180px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.5rem;">Find dit perfekte sted at sove</p>
+      <h2 class="section-heading" style="color:#1c3a45; margin:0 0 1rem;">Overnatning</h2>
+      <p style="max-width:600px; margin:0 auto 1.5rem; color:#4a5e65; line-height:1.75;">
+        Når dagen går på hæld finder du et væld af overnatningsmuligheder – fra hyggelige shelters og campingpladser til charmerende kroer og hoteller.
+      </p>
+      <a href="#" class="btn-gold" style="margin-bottom:3rem; display:inline-flex;">Se alle overnatninger →</a>
+    </div>
+    <!-- 2+3 grid som opdagTHY -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+      <div class="onat-card" style="height:260px;">
+        <img src="https://placehold.co/600x260/1a3a4a/ffffff?text=Shelters+%26+primitiv+overnatning" alt="Shelters i Nationalpark Thy">
+        <div class="onat-label">Shelters & primitiv overnatning</div>
+      </div>
+      <div class="onat-card" style="height:260px;">
+        <img src="https://placehold.co/600x260/2a3a5a/ffffff?text=Agger+Glamping+%26+Wellness" alt="Glamping i Agger">
+        <div class="onat-label">Glamping & unikke ophold</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+      <div class="onat-card" style="height:200px;">
+        <img src="https://placehold.co/400x200/3a5a2a/ffffff?text=Hoteller+%26+kroer" alt="Hoteller og kroer i Thy">
+        <div class="onat-label">Hoteller & kroer</div>
+      </div>
+      <div class="onat-card" style="height:200px;">
+        <img src="https://placehold.co/400x200/4a3a2a/ffffff?text=Camping" alt="Camping i Thy">
+        <div class="onat-label">Campingpladser</div>
+      </div>
+      <div class="onat-card" style="height:200px;">
+        <img src="https://placehold.co/400x200/3a2a4a/ffffff?text=Sommerhuse" alt="Sommerhuse i Thy via Feriepartner Thy">
+        <div class="onat-label">Sommerhuse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     9. STEDER (mørk, 3x3 grid)
+═══════════════════════════════════════════════ -->
+<section id="steder" style="background:#1c3a45; padding:6rem 1.5rem; position:relative; overflow:hidden;" class="noise-overlay">
+  <div style="max-width:1180px; margin:0 auto; position:relative; z-index:1;">
+    <div style="text-align:center; margin-bottom:3.5rem;">
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.5rem;">Thy by for by</p>
+      <h2 class="section-heading" style="color:#fff; margin:0 0 1rem;">Steder</h2>
+      <p style="max-width:600px; margin:0 auto; color:rgba(255,255,255,0.65); line-height:1.75;">
+        Fra det fredede fiskerlejet Stenbjerg til Cold Hawaiis hjemby Klitmøller – hvert sted har sin egen sjæl.
+      </p>
+    </div>
+    <!-- 3x3 grid -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/1a3a2a/ffffff?text=Agger" alt="Agger">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Agger</div><div class="sted-sub">Kystby & fjordby</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/2a3a1a/ffffff?text=Stenbjerg" alt="Stenbjerg">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Stenbjerg</div><div class="sted-sub">Fredet fiskerlejet</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/1a2a3a/ffffff?text=Nr.+Vorupør" alt="Nr. Vorupør">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Nr. Vorupør</div><div class="sted-sub">Fiskeri & Silicon VØ</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/1a3a4a/ffffff?text=Klitmøller" alt="Klitmøller – Cold Hawaii">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Klitmøller</div><div class="sted-sub">Cold Hawaii's hjemby</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/3a2a1a/ffffff?text=Hanstholm" alt="Hanstholm">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Hanstholm</div><div class="sted-sub">Det nordligste punkt</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/1a1a3a/ffffff?text=Nordthy" alt="Nordthy og Dark Sky Park">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Nordthy</div><div class="sted-sub">Dark Sky Park Bulbjerg</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/2a1a3a/ffffff?text=Thisted" alt="Thisted">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Thisted</div><div class="sted-sub">Den store by</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/2a3a2a/ffffff?text=Hurup" alt="Hurup">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Hurup</div><div class="sted-sub">Troldejagt & velvære</div></div>
+        </div>
+      </div>
+      <div class="sted-card" style="height:200px;" tabindex="0">
+        <img src="https://placehold.co/400x200/1a3a3a/ffffff?text=Limfjorden" alt="Limfjorden">
+        <div class="sted-overlay">
+          <div><div class="sted-name">Limfjorden</div><div class="sted-sub">Sejlads & natur</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     10. VELVÆRE (lys, bred foto)
+═══════════════════════════════════════════════ -->
+<section id="velvaere" style="background:#f2f1f0; padding:6rem 1.5rem;">
+  <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+    <!-- Foto venstre -->
+    <div class="photo-card img-teal-tint" style="height:420px;">
+      <img src="https://placehold.co/700x420/3a5a4a/ffffff?text=Vinterbadning+%26+ro+i+Thy" alt="Vinterbadning i Thy">
+    </div>
+    <!-- Tekst højre -->
+    <div>
+      <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#b5873a; margin:0 0 0.75rem;">Ro, restitution & natur</p>
+      <h2 class="section-heading" style="color:#1c3a45; margin:0 0 1.25rem;">Velvære</h2>
+      <p class="body-text" style="color:#4a5e65; margin:0 0 1rem;">
+        I Thy finder du en balance, du ikke finder andre steder. Den langsomme puls, bølgernes kraft og det, som bare er. Vinterbaderne kaster sig i det iskolde hav, og stilheden gør Mælkevejen synlig.
+      </p>
+      <p class="body-text" style="color:#4a5e65; margin:0 0 1.75rem;">
+        Sydthy Kurbad, solnedgange ved shelterne, og naturterapeutiske vandringer i Nationalpark Thy. Tag dig tid til at mærke friheden.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.75rem;">
+        <span class="sub-tag">Sydthy Kurbad</span>
+        <span class="sub-tag">Vinterbadning</span>
+        <span class="sub-tag">Mælkevej & mørk himmel</span>
+        <span class="sub-tag">Slow travel</span>
+      </div>
+      <a href="#" class="btn-gold">Oplev velværet →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     11. FOOTER
+═══════════════════════════════════════════════ -->
+<footer id="praktisk" style="background:#1c3a45; padding:4rem 1.5rem 2.5rem; position:relative; overflow:hidden;" class="noise-overlay">
+  <div style="max-width:1180px; margin:0 auto; position:relative; z-index:1;">
+    <!-- Top: logo + nav -->
+    <div style="display:grid; grid-template-columns:auto 1fr; gap:4rem; align-items:start; margin-bottom:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(255,255,255,0.12);">
+      <!-- Logo -->
+      <div>
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.09 53.36" style="width:36px;height:36px;" aria-hidden="true">
+            <path fill="#b5873a" d="M48,0c.51.06,1,.14,1.55.18s1.1,0,1.65,0a1.25,1.25,0,0,1,.94.8,5.32,5.32,0,0,0,.25.77c.08.22.22.41.31.62.17.44.32.88.5,1.31s.5,1.1.75,1.64.6,1.3.92,1.93c.14.28.35.52.5.78a6,6,0,0,1,.25.58c.3.66.57,1.33.89,2,.14.28.43.5.52.79a1.84,1.84,0,0,1,0,.93,2,2,0,0,1-.64.84.3.3,0,0,0-.1.21c0,.4-.27.6-.51.81a1.59,1.59,0,0,1-.74.48c-.17,0-.29.29-.45.43-.52.47-1.07.91-1.57,1.4-.66.66-.77.51-1.5,0a12.23,12.23,0,0,1-1-.94l-1.74.77c-.59.27-1.19.52-1.77.83a6.2,6.2,0,0,0-.88.67c-.55.44-1.08.9-1.65,1.32a.74.74,0,0,1-.57,0,2.57,2.57,0,0,1-.6-.39c-.29-.21-.58-.42-.85-.65s-.46-.45-.7-.65a.5.5,0,0,0-.32-.15,8.26,8.26,0,0,0-1.22,0,.54.54,0,0,0-.35.24c0,.07.07.23.13.33.22.4.48.77.66,1.18s-.05.65-.51.89-.74.56-1.15.76a3.8,3.8,0,0,0-.74.49l-1.78,1.42a5,5,0,0,1-.62.4,1.39,1.39,0,0,1-.8.23c-1.61-.08-3.22-.14-4.83-.2a.77.77,0,0,0-.89.67c-.07.3-.14.6-.23.89a4.11,4.11,0,0,1-.21.42c-.21.54-.4,1.08-.62,1.61s-.38.79-.55,1.2c-.1.23-.15.48-.24.72s-.15.38-.24.57c-.18.39-.39.76-.56,1.16s-.16.57-.26.86-.2.47-.3.7a.89.89,0,0,0-.09.26,4.23,4.23,0,0,1-.46,1.29c-.12.24-.22.5-.33.75s-.29.72-.48,1a1.3,1.3,0,0,1-.45.42c-.48.29-1,.54-1.46.82l-.91.52-1.8,1.13A20.45,20.45,0,0,1,18.3,39.3c-.4.19-.34.46-.38.76a2,2,0,0,0,.52,1.57A1.79,1.79,0,0,1,19,43.1a9.41,9.41,0,0,1-.25.91c-.12.44-.25.89-.37,1.34l-.27,1c0,.12-.08.3,0,.35s.24.06.36.05c.34,0,.67-.09,1-.12s.45.17.57.43c.22.49.47,1,.73,1.43.14.27.37.23.59.12a1.29,1.29,0,0,1,1.91.32,6.8,6.8,0,0,1,.8.81.85.85,0,0,1,0,.68,2.43,2.43,0,0,1-1,.9,20.66,20.66,0,0,0-1.92,1.28c-.28.22-.6.4-.87.62s-.68.07-1-.08c-.64-.37-1.25-.79-1.86-1.22-.38-.26-.71-.58-1.07-.86a.69.69,0,0,0-.31-.12c-.21,0-.44,0-.65,0a.85.85,0,0,0-.93.62c-.18.43-.39.85-.61,1.27a.32.32,0,0,1-.22.15A2.82,2.82,0,0,1,13,53c-.59,0-1.17,0-1.75,0-.8,0-1.11-.47-1.38-1-.16-.35-.36-.68-.54-1l-.65-1.31c-.26-.51-.54-1-.79-1.55-.1-.2-.17-.43-.26-.64a5.05,5.05,0,0,0-.24-.53c-.32-.61-.66-1.2-1-1.82s-.56-1.26-.87-1.89a1.7,1.7,0,0,0-.87-.86c-.14,0-.31-.08-.35.15-.07.41-.15.81-.22,1.21-.11.59-.23,1.19-.35,1.78-.07.37-.17.74-.22,1.11-.1.64-.18,1.28-.27,1.92,0,.26-.2.36-.44.39-.49.07-.82-.24-1.19-.48L.8,47.82C.49,47.61.11,47.44,0,47a3.09,3.09,0,0,1,0-.91c.05-.42.15-.84.19-1.26.09-.88.14-1.77.23-2.65.12-1.14.24-2.27.4-3.39a3.94,3.94,0,0,1,.34-1c.23-.57.45-1.14.7-1.7s.5-1,.75-1.53.41-.93.63-1.39.42-.78.62-1.17.29-.71.45-1c.3-.64.61-1.27.91-1.9L5.81,28c.4-.86.81-1.72,1.21-2.59.15-.32.26-.68.44-1,.36-.6.74-1.19,1.15-1.76s.87-1.15,1.33-1.7.74-.8,1.09-1.22c.65-.77,1.32-1.53,1.9-2.35a15.37,15.37,0,0,0,.93-1.75c.12-.24.26-.46.38-.7s.34-.75.54-1.1c.35-.61.72-1.2,1.08-1.8a3.17,3.17,0,0,1,.25-.56.9.9,0,0,1,.53-.32,3,3,0,0,0,1.1-.35.65.65,0,0,1,.21-.06A1.74,1.74,0,0,0,19.19,10c.45-.7.94-1.38,1.43-2S21.56,6.75,22,6.12s1-1.55,1.55-2.3a7.19,7.19,0,0,1,.84-.91l0,.08a3.73,3.73,0,0,0,.46.09,7,7,0,0,1,1.22.06,7.43,7.43,0,0,1,2.68.73,8.49,8.49,0,0,0,1.19.5c.4.17.79.37,1.19.55a3.59,3.59,0,0,0,.43.14,23.44,23.44,0,0,0,2.32.51,3.55,3.55,0,0,0,1.2-.26c.36-.09.71-.22,1.07-.34s.69-.25,1-.37a.64.64,0,0,1,.2,0,4.28,4.28,0,0,0,1.41-.38A7.49,7.49,0,0,1,39.65,4c.41-.13.81-.28,1.22-.42a5.08,5.08,0,0,0,.69-.23,14,14,0,0,0,1.28-.66c.53-.32,1-.68,1.56-1,.34-.23.66-.49,1-.7s.65-.33,1-.51S46.8.14,47,0Z"/>
+          </svg>
+          <span style="font-size:1.4rem; font-weight:900; letter-spacing:-0.02em; color:#fff;">
+            explore<span style="color:#b5873a;">thy</span>
+          </span>
+        </div>
+        <p style="color:rgba(255,255,255,0.5); font-size:0.85rem; line-height:1.65; max-width:220px; margin:0;">
+          Din indgang til Thy – uanset hvordan du ønsker at opleve det.
+        </p>
+      </div>
+      <!-- Nav links -->
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem 1rem;">
+        <a href="#natur" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Natur</a>
+        <a href="#aktivitet" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Aktivitet</a>
+        <a href="#oplevelser" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Oplevelser</a>
+        <a href="#spisesteder" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Spisesteder</a>
+        <a href="#overnatning" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Overnatning</a>
+        <a href="#steder" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Steder</a>
+        <a href="#velvaere" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Velvære</a>
+        <a href="#praktisk" style="color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:600; text-decoration:none; padding:0.3rem 0; transition:color 0.2s;" onmouseover="this.style.color='#b5873a'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Praktisk</a>
+      </div>
+    </div>
+    <!-- Bottom bar -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <p style="color:rgba(255,255,255,0.35); font-size:0.8rem; margin:0;">
+        © 2026 explorethy · Alle rettigheder forbeholdes
+      </p>
+      <p style="color:rgba(255,255,255,0.35); font-size:0.8rem; margin:0;">
+        Thy, Danmarks vildeste hjørne
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Responsive + mobile JS -->
+<style>
+  @media (max-width: 768px) {
+    #desktop-nav { display: none !important; }
+    #hamburger-btn { display: flex !important; }
+    .hidden-mobile { display: none !important; }
+    /* Stack grids */
+    section > div > div[style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+    section > div > div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    footer div[style*="grid-template-columns:auto 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+    footer div[style*="grid-template-columns:repeat(4"] {
+      grid-template-columns: repeat(2,1fr) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    section > div > div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('hamburger-btn');
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+</script>
+
+</body>
+</html>

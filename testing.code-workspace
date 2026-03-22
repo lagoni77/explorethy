@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../testing"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "explorethy",
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["/Users/brianholmlagoni/Library/CloudStorage/Dropbox/Claude Code/visitthy/serve-preview.py"],
+      "port": 3000,
+      "autoPort": false
+    }
+  ]
+}

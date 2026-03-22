@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ihanstholm.dk)",
+      "WebFetch(domain:www.visitnordvestkysten.dk)",
+      "WebFetch(domain:nationalparkthy.dk)",
+      "WebFetch(domain:vorupor.dk)",
+      "WebFetch(domain:indd.adobe.com)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(kill 39943 86136)",
+      "Bash(/usr/bin/python3 --version)",
+      "Bash(/usr/bin/python3 -c \"import http.server; print\\(''ok''\\)\")",
+      "Bash(curl -s http://localhost:3000/aktivitet/surfing-cold-hawaii.html)",
+      "Read(//Users/brianholmlagoni/Library/CloudStorage/Dropbox/Claude Code/visitthy/**)",
+      "Bash(curl -s http://localhost:3000/de/cold-hawaii-klitmoller.html)",
+      "Bash(grep -o https://[a-zA-Z0-9./_-]*nationalparkthy[a-zA-Z0-9./_-]* /Users/brianholmlagoni/.claude/projects/-Users-brianholmlagoni-Library-CloudStorage-Dropbox-Claude-Code-visitthy/7ea631d2-4d69-4f36-8d81-a28270c249e1.jsonl)",
+      "Bash(curl -s http://localhost:3000/natur/nationalpark-thy.html)"
+    ]
+  }
+}
