@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "openspace": {
-      "command": "/home/user/.openspace-venv/bin/openspace-mcp",
-      "args": ["--transport", "stdio"]
-    }
-  }
-}
