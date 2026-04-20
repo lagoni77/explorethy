@@ -4,8 +4,8 @@
  * Usage: add id="thy-newsletter-form" to a <form> with an <input type="email"> inside.
  */
 (function () {
-  const INSFORGE_BACKEND_URL = '<YOUR_INSFORGE_BACKEND_URL>';
-  const INSFORGE_ANON_KEY = '<YOUR_INSFORGE_ANON_KEY>';
+  const INSFORGE_BACKEND_URL = 'https://35tuj4gh.eu-central.insforge.app';
+  const INSFORGE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OC0xMjM0LTU2NzgtOTBhYi1jZGVmMTIzNDU2NzgiLCJlbWFpbCI6ImFub25AaW5zZm9yZ2UuY29tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODAzNTl9.7zSUqmgWQmafZJ6Z8LKAy3vkDeAdldOurGyNdfYA1wI';
 
   const pageLang = document.documentElement.lang || 'da';
 
