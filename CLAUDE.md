@@ -46,6 +46,30 @@
 - **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
 - **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
 
+## InsForge MCP Integration
+
+The project uses InsForge as its backend. The InsForge MCP server is registered in `.mcp.json` and gives Claude Code direct access to backend tools — no dashboard required.
+
+### MCP tools available once API key is set
+- `init` — Initialize project, retrieve `BACKEND_URL` and anon JWT
+- `execute_sql` — Run raw SQL (create tables, query data, etc.)
+- `create_function` / `update_function` / `delete_function` — Manage Deno edge functions
+- `list_buckets` / `create_bucket` — File storage management
+
+### First-time setup (run once after setting API key in `.mcp.json`)
+1. Call `init` → note the `BACKEND_URL` returned
+2. Create the `conversations` table (see schema in plan)
+3. Create the `newsletter_subscribers` table
+4. Deploy the `chat-with-thy` edge function
+5. Update `INSFORGE_BACKEND_URL` in `thy-assistant.js` and `newsletter.js`
+
+### Backend features
+- **AI Travel Assistant** — `chat-with-thy` edge function (Deno), uses InsForge Model Gateway
+- **Newsletter capture** — `newsletter_subscribers` table, written via anon JWT
+
+### Language support
+The AI assistant responds in the visitor's language (Danish, German, or English) based on the page's `<html lang>` attribute. English (`en`) is handled via the AI widget — there are no hardcoded English HTML pages (English is UX-only, not SEO).
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
