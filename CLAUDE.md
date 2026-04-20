@@ -56,19 +56,72 @@ The project uses InsForge as its backend. The InsForge MCP server is registered 
 - `create_function` / `update_function` / `delete_function` — Manage Deno edge functions
 - `list_buckets` / `create_bucket` — File storage management
 
-### First-time setup (run once after setting API key in `.mcp.json`)
-1. Call `init` → note the `BACKEND_URL` returned
-2. Create the `conversations` table (see schema in plan)
-3. Create the `newsletter_subscribers` table
-4. Deploy the `chat-with-thy` edge function
-5. Update `INSFORGE_BACKEND_URL` in `thy-assistant.js` and `newsletter.js`
+### Current status
+- **Phase 1 ✅** — `.mcp.json`, `thy-assistant.js`, `newsletter.js` built. Backend URL and anon key wired in.
+- **Phase 2 — NEXT** — Run MCP tools to create DB tables and deploy edge functions (see schema below).
+- **Phase 3** — Add widget script tags to HTML pages, build `/plan/` itinerary page.
+
+### Phase 2 checklist (run via InsForge MCP tools)
+1. `execute_sql` — Create `conversations` table:
+```sql
+CREATE TABLE conversations (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  session_id text NOT NULL,
+  role text NOT NULL CHECK (role IN ('user', 'assistant')),
+  content text NOT NULL,
+  language text DEFAULT 'da',
+  token_count int,
+  created_at timestamptz DEFAULT now()
+);
+CREATE INDEX ON conversations (session_id, created_at DESC);
+```
+2. `execute_sql` — Create `newsletter_subscribers` table:
+```sql
+CREATE TABLE newsletter_subscribers (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  email text UNIQUE NOT NULL,
+  language text DEFAULT 'da',
+  source_page text,
+  confirmed_at timestamptz,
+  created_at timestamptz DEFAULT now()
+);
+```
+3. `execute_sql` — Create `itineraries` table:
+```sql
+CREATE TABLE itineraries (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  share_token text UNIQUE NOT NULL DEFAULT substr(md5(random()::text), 1, 8),
+  days int NOT NULL CHECK (days BETWEEN 1 AND 7),
+  party_type text NOT NULL,
+  interests text[] NOT NULL,
+  season text NOT NULL,
+  language text DEFAULT 'da',
+  content jsonb NOT NULL,
+  created_at timestamptz DEFAULT now()
+);
+CREATE INDEX ON itineraries (share_token);
+```
+4. `execute_sql` — Create `rate_limits` table:
+```sql
+CREATE TABLE rate_limits (
+  ip_hash text NOT NULL,
+  window_start timestamptz NOT NULL DEFAULT date_trunc('hour', now()),
+  count int DEFAULT 1,
+  PRIMARY KEY (ip_hash, window_start)
+);
+```
+5. Set RLS: anon INSERT-only on `conversations` and `newsletter_subscribers`. Anon INSERT + SELECT-by-token on `itineraries`.
+6. Deploy `chat-with-thy` edge function (Deno) — chat handler with rate limiting, last-10-turns context, Model Gateway (claude-haiku-4-5-20251001).
+7. Deploy `create-itinerary` edge function — structured itinerary generator (claude-sonnet-4-6), returns share_token.
+8. Deploy `get-itinerary` edge function — GET by share_token, returns itinerary content.
 
 ### Backend features
-- **AI Travel Assistant** — `chat-with-thy` edge function (Deno), uses InsForge Model Gateway
-- **Newsletter capture** — `newsletter_subscribers` table, written via anon JWT
+- **AI Travel Assistant** — `chat-with-thy` edge function, bilingual (da/de/en)
+- **Trip Itinerary Planner** — `create-itinerary` + `get-itinerary`, shareable via `/plan/?id=<token>`
+- **Newsletter capture** — `newsletter_subscribers` table, anon JWT
 
 ### Language support
-The AI assistant responds in the visitor's language (Danish, German, or English) based on the page's `<html lang>` attribute. English (`en`) is handled via the AI widget — there are no hardcoded English HTML pages (English is UX-only, not SEO).
+The AI assistant and itinerary planner respond in the visitor's language (da/de/en) based on `<html lang>`. English is UX-only — no hardcoded English HTML pages.
 
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
